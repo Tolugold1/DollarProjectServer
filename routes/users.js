@@ -36,15 +36,6 @@ const hour = dt.getHours();
 const d = dt.getDay()
 const day = days[d];
 const minute = dt.getMinutes();
-let time;
-if ( minute < 10) {
-  minute = '0' + minute;
-}
-if (hour > 12) {
-  time = `${hour - 12}:${minute}:${seconds}PM`
-} else {
-  time = `${hour}:${minute}:${seconds}AM`
-}
 
   Official.find()
   .then(offresp => {
@@ -57,7 +48,7 @@ if (hour > 12) {
         day : day,
         hour: hour,
         minute: minute,
-        time: time,
+        time: req.body.time,
         nombre: req.body.nombre
       }
       Official.create(obj)
@@ -69,7 +60,7 @@ if (hour > 12) {
     })
 })
 
-router.put('/official', cors.corsWithOption, (req, res, next) => { 
+/* router.put('/official', cors.corsWithOption, (req, res, next) => { 
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednessday', 'Thursday', 'Friday', 'Saturday']
   const dt = new Date();
   const date = dt.getDate();
@@ -90,7 +81,7 @@ router.put('/official', cors.corsWithOption, (req, res, next) => {
       res.json({success: false})
     }
   }, (err => console.log(err))).catch(err => console.log(err));
-})
+}) */
 
 // BLUE api-endpoint
 
