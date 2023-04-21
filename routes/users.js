@@ -13,7 +13,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/official', cors.cors, (req, res, next) => {
-  Official.find()
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednessday', 'Thursday', 'Friday', 'Saturday']
+  const d = new Date()
+  const day = d.getDay();
+  console.log(days[day])
+  Official.find({"day": days[day]})
   .then(resp => {
     if (resp !== []) {
       res.statusCode = 200;
@@ -86,7 +90,11 @@ const minute = dt.getMinutes();
 // BLUE api-endpoint
 
 router.get('/blue', cors.cors, (req, res, next) => {
-  Blue.find()
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednessday', 'Thursday', 'Friday', 'Saturday']
+  const d = new Date()
+  const day = d.getDay();
+  console.log(days[day])
+  Blue.find({"day": days[day]})
   .then(resp => {
     if (resp !== [] || resp !== null) {
       res.statusCode = 200;
